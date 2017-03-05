@@ -1,0 +1,93 @@
+extends layout
+
+block content
+  .well
+    .row
+      h3.center  Subtitle input
+      p Paste your subtitles here.
+    textarea#subtitle_input.form-control(cols='30', rows='10').
+      00:00:02,000 --> 00:00:04,000
+      This 
+      
+      00:00:04,000 --> 00:00:06,000
+       is the demo and I'm trying to see that 
+      
+      00:00:06,000 --> 00:00:08,000
+       the subtitles are really going to work and 
+      
+      00:00:08,000 --> 00:00:10,000
+       let's have the subtitles 
+      
+      00:00:10,000 --> 00:00:12,000
+       enough background tell this is what you would do 
+      
+      00:00:12,000 --> 00:00:14,000
+       if you really wanted some 
+      
+      00:00:14,000 --> 00:00:16,000
+       subtitles 
+      
+      00:00:16,000 --> 00:00:18,000
+       here. And this looks pretty great I 
+      
+      00:00:18,000 --> 00:00:20,000
+       think I think this is going 
+      
+      00:00:20,000 --> 00:00:22,000
+       to 
+      
+      00:00:22,000 --> 00:00:24,000
+       be. Adam 
+      
+      00:00:24,000 --> 00:00:26,000
+       okay not. 
+      
+      00:00:26,000 --> 00:00:28,000
+       Good enough. So if it doesn't 
+      
+      00:00:28,000 --> 00:00:30,000
+      work then that's fine. 
+
+  #time_code_adjustment_sliders.row.well
+    h4.center Adjust subtitle time
+    .row
+      .col-xs-6
+        label(for='time_code_adjustment_slider')  Time Code Adjustment 
+        input(type='range', min='-10000', max='10000', value='0', step='100', oninput='changeTimeCodeValues(value)')
+        #time_code_adjustment_display 0
+        br
+        label(for='time_code_length_slider') Time Code Length in Milliseconds
+        input#time_code_length_slider(type='range', min='500', max='5000', value='2000', step='500', oninput='changeTimeCodeLength(value)')
+        #time_code_length_display 2000
+        br 
+        p Subtitles will be populated here. These subtitles are adjusted with the above sliders.
+      .col-xs-6
+        textarea#output_subtitles.form-control(cols='30', rows='10')
+    .row
+      br
+      a.col-xs-4#downloadOutputScript.btn.btn-success(href="#") Download script
+      a.col-xs-4.col-xs-offset-2#downloadOutputSubtitles.btn.btn-primary(href="#") Download subtitles
+
+
+  .well
+    h4.center Translate
+    .row
+      .col-xs-6
+        label(for="languageToTranslateTo") Target Language
+        br
+        select#languageToTranslateTo
+          each language, i in [["Chinese (Simplified)", "zh-Hans"], ["Chinese (Traditional)", "zh-Hant"], ["Japanese", "ja"], ["Korean", "ko"]]
+            option(value="#{language[1]}")= language[0]
+      .col-xs-6
+        a.btn.btn-success.center(href="#" id="start_translate") Fetch Translation
+        br
+        br
+        textarea#translatedSubtitlesContainer.form-control(cols='30', rows='10')
+        br 
+    .row
+      a.col-xs-4.btn.btn-success.center#downloadTranslatedScript(href="#") Download Translated Script
+      a.col-xs-5.col-xs-offset-2#downloadTranslatedSubtitles.btn.btn-primary.center(href="#") Download Translated Subtitles
+
+
+
+
