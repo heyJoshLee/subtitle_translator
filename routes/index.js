@@ -7,7 +7,7 @@ var api_key = process.env.MS_TRANSLATOR_API_KEY;
 router.get('/', function(req, res, next) {
   console.log("api_key is...")
   console.log(api_key)
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Subtitle Fixer' });
 });
 
 router.post("/translate", function(req, res, next) {
